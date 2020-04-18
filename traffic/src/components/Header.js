@@ -31,17 +31,16 @@ render(){
     return(
         <div>
             <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">{this.props.appName}</NavbarBrand>
-        <NavbarToggler onClick={this.toggle.bind(this)} />
-        <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              100 traffic incidents
-            </NavItem>
-            
-          </Nav>
-        </Collapse>
-      </Navbar> 
+                <NavbarBrand href="/">{this.props.appName}</NavbarBrand>
+                <NavbarToggler onClick={this.toggle.bind(this)} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav className="mr-auto" navbar>
+                        <NavItem>
+                            100 traffic incidents
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+            </Navbar> 
         </div>
     );
 }

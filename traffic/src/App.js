@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.css';
-import Header from './components/Header'
+import Header from './components/Header';
+import Map from './components/Map';
+import {container} from 'reactstrap';
+require('dotenv').config()
 
 class App extends React.Component {
 
@@ -16,6 +19,10 @@ class App extends React.Component {
   return (
     <div className="App">
       <Header appName={this.state.applicationName}/>
+      <container>
+      <Map/>
+      </container>
+      
     </div>
   );
   }
