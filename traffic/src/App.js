@@ -3,7 +3,7 @@ import './App.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Header from './components/Header';
 import Map from './components/Map';
-import {container} from 'reactstrap';
+import {Container} from 'reactstrap';
 require('dotenv').config()
 
 class App extends React.Component {
@@ -20,9 +20,9 @@ class App extends React.Component {
   return (
     <div className="App">
       <Header appName={this.state.applicationName}/>
-      <container>
+      <Container>
       <Map/>
-      </container>
+      </Container>
       
     </div>
   );
