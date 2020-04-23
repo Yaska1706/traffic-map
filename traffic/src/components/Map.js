@@ -5,7 +5,8 @@ import mapboxgl from 'mapbox-gl';
 class Map extends React.Component{
     constructor(props){
         super(props);
-
+        
+        
         this.state = {
             app_url:'https://data.edmonton.ca/resource/87ck-293k.json',
             map: false,
@@ -21,11 +22,12 @@ class Map extends React.Component{
         mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_TOKEN;
         let map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v9',
+            style: 'mapbox://styles/mapbox/light-v9',
             ...this.state.viewport
 
         });
         map.on('load', () => {
+            
             map.addLayer({
               "id": "points",
               "type": "circle",
@@ -33,12 +35,31 @@ class Map extends React.Component{
                 "type": "geojson",
                 "data": this.state.data
               },
-              "paint": {
+              "points": {
                 "circle-radius": 12,
-                "circle-color": "#8B0000"
+                "circle-color": "#B4D455"
               }
             })
           });
+
+        map.on('click', 'points',(e) => {
+            const coordinates = e.features[0].geometry.coordinates.slice();
+            const {description, details ,impact, duration} = e.features[0].properties;
+
+            while (Math.abs(e.lngLat.lng - coordinates[0]) > 180){
+                coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+            }
+
+            new mapboxgl.Popup()
+                .setLngLat(coordinates)
+                .setHTML(`
+                    <strong>${description}</strong><br />
+                    <em>${impact}</em><br />
+                    <em>${duration}</em><br />
+                    <p>${details}</p>
+                `)
+                .addTo(map);
+        });
         
         this.setState({map});
     }
