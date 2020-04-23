@@ -60,6 +60,14 @@ class Map extends React.Component{
                 `)
                 .addTo(map);
         });
+
+        map.on('mouseenter', 'points', () =>{
+            map.getCanvas().style.cursor = 'pointer';
+        });
+
+        map.on('mouseleave', 'points', () =>{
+            map.getCanvas().style.cursor = '';
+        });
         
         this.setState({map});
     }
